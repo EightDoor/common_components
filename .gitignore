@@ -1,3 +1,4 @@
 packages/**/node_modules
 history
 examples/node_modules
+node_modules

@@ -11,7 +11,7 @@ const Toast = {
       icon: icon ?? 'success',
     });
   },
-  /**   
+  /**
    * 显示加载中
    * @param title
    * @returns

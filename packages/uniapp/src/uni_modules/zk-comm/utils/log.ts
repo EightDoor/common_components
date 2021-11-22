@@ -10,7 +10,7 @@ const log = {
   },
 
   /**
-     * info  
+     * info
      * @param val
      */
   i: (val: any, title?: string) => {

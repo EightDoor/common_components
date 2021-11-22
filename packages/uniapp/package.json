@@ -57,20 +57,17 @@
     "@dcloudio/uni-quickapp-native": "^2.0.0",
     "@dcloudio/uni-quickapp-webview": "^2.0.0",
     "@dcloudio/uni-stat": "^2.0.0",
-    "@dcloudio/uni-ui": "^1.4.8",
+    "@dcloudio/uni-ui": "^1.4.6",
     "@vue/shared": "^3.0.0",
     "core-js": "^3.6.5",
     "flyio": "^0.6.2",
     "lodash": "^4.17.21",
     "regenerator-runtime": "^0.12.1",
-    "vue": "^3.0.0",
-    "vue-class-component": "^6.3.2",
-    "vue-property-decorator": "^8.0.0",
-    "vuex": "^3.2.0"
+    "vue": "^3.0.0"
   },
   "devDependencies": {
     "@babel/plugin-syntax-typescript": "^7.2.0",
-    "@dcloudio/types": "*",
+    "@dcloudio/types": "^2.5.13",
     "@dcloudio/uni-automator": "^2.0.0",
     "@dcloudio/uni-cli-shared": "^2.0.0",
     "@dcloudio/uni-migration": "^2.0.0",

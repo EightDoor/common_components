@@ -2,10 +2,15 @@
    
     "id": "zk-comm",
     "displayName": "vue3 上拉加载 下拉刷新",
-    "version": "1.0.0", 
+    "version": "1.0.3", 
+    "private": true,
     "description": "vue3公用组件,上拉加载，下拉刷新",
-    "keywords": ["前端","vue3","typescript"],
-    "repository": "github:user/repo",
+    "keywords": [
+        "前端",
+        "vue3",
+        "typescript"
+    ],
+    "repository": "https://github.com/EightDoor/zk_comm/tree/master/packages/uniapp",
     "engines": {
         "HBuilderX": "^3.1.0"
     },
@@ -30,12 +35,7 @@
       "npmurl":"" 
     },
     "uni_modules": {
-        "dependencies": {
-            "sass": "^1.43.4",
-            "sass-loader": "10.1.1",
-            "lodash": "^4.17.21",
-            "@types/lodash": "^4.14.177"
-        },
+        "dependencies": [],
         "encrypt": [ 
           
         ],
@@ -46,19 +46,17 @@
             },
             "client": {
                 "App": {
-                    "app-vue": "y",
-                    "app-nvue": "n"
+                    "app-vue": "u",
+                    "app-nvue": "u"
                 },
                 "H5-mobile": {
-                    "Safari": { 
-                        "minVersion": "14.0.2"
-                    },
-                    "Android Browser": "y",
+                    "Safari": "u",
+                    "Android Browser": "u",
                     "微信浏览器(Android)": "u",
                     "QQ浏览器(Android)": "u"
                 },
                 "H5-pc": {
-                    "Chrome": "y",
+                    "Chrome": "u",
                     "IE": "u",
                     "Edge": "u",
                     "Firefox": "u",
@@ -74,6 +72,10 @@
                 "快应用": {
                     "华为": "u",
                     "联盟": "u"
+                },
+                "Vue": {
+                    "vue2": "n",
+                    "vue3": "y"
                 }
             }
         }

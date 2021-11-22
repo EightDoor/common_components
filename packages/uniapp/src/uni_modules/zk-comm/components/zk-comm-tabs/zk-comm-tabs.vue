@@ -9,6 +9,8 @@
     @loadMore="loadMore"
     @onScroll="onScroll"
     :title="title"
+    :isLeft="isLeft"
+    @goTop="goTop"
   >
     <scroll-view
       :class="{ tabs_title_container: true, tab_title_ceiling: isCeiling }"
@@ -78,6 +80,10 @@ export default defineComponent({
       type: Number,
       default: 10,
     },
+    isLeft: {
+      type: Boolean,
+      default: false,
+    },
   },
   emits: ["changeIndex", "refresh", "loadMore", "update:page", "update:size"],
   setup(props, { emit }) {
@@ -98,6 +104,9 @@ export default defineComponent({
       } else {
         isCeiling.value = false;
       }
+    }
+    function goTop() {
+      isCeiling.value = false;
     }
 
     // 上拉加载、下拉刷新
@@ -129,6 +138,7 @@ export default defineComponent({
       change,
       onScroll,
       isCeiling,
+      goTop,
 
       callRefres,
       pageNum,
@@ -171,5 +181,34 @@ $tabsPaddingBo: 10px;
   left: 0;
   background: white;
   padding: 10px 0;
+  animation-duration: 0.5s;
+  animation-name: ceilingAnimate;
+}
+
+@keyframes ceilingAnimate {
+  0% {
+    top: 0;
+  }
+  10% {
+    top: 10px;
+  }
+  20% {
+    top: 20px;
+  }
+  30% {
+    top: 30px;
+  }
+  50% {
+    top: 35px;
+  }
+  70% {
+    top: 50px;
+  }
+  90% {
+    top: 60px;
+  }
+  100% {
+    top: 65px;
+  }
 }
 </style>

@@ -12,6 +12,7 @@
       @update:size="updateSize"
       @loadMore="loadMore"
       @onScroll="onScroll"
+      @goTop="goTop"
     >
       <slot />
     </custom-content>
@@ -51,7 +52,7 @@ export default defineComponent({
       default: 10,
     },
   },
-  emits: ["refresh", "loadMore", "update:page", "update:size", "onScroll"],
+  emits: ["refresh", "loadMore", "update:page", "update:size", "onScroll", "goTop"],
   setup(props, { emit }) {
     const pageNum = ref(1);
     const pageSize = ref(10);
@@ -80,6 +81,10 @@ export default defineComponent({
       emit("onScroll", e);
     }
 
+    function goTop() {
+      emit("goTop");
+    }
+
     return {
       callRefres,
 
@@ -89,6 +94,7 @@ export default defineComponent({
       updatePage,
       updateSize,
       onScroll,
+      goTop,
     };
   },
 });

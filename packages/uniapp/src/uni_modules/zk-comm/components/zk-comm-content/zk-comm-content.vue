@@ -61,7 +61,7 @@ export default defineComponent({
       default: 100,
     },
   },
-  emits: ["refresh", "loadMore", "update:page", "update:size", "onScroll"],
+  emits: ["refresh", "loadMore", "update:page", "update:size", "onScroll", "goTop"],
   setup(props, { emit }) {
     const scrollTop = ref(0);
     const scrollOldTop = ref(0);
@@ -128,6 +128,7 @@ export default defineComponent({
         scrollTop.value = 0;
         // 刷新页面
         refreshFun();
+        emit("goTop");
       });
     }
     return {

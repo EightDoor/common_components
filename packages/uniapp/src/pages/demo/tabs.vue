@@ -1,6 +1,6 @@
 <template>
   <view>
-    <zk-comm-tabs :list="list" title="tabs" @changeIndex="changeIndex">
+    <zk-comm-tabs :isLeft="true" :list="list" title="tabs" @changeIndex="changeIndex">
       <view class="test" v-show="current === 0">
         <text>12</text>
       </view>

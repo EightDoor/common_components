@@ -26,7 +26,7 @@
     </scroll-view>
     <view>
       <image
-      @click="scrollTopFun"
+        @click="scrollTopFun"
         class="content_image"
         :style="{ display: isShowTop }"
         src="http://vue3.admin.qiniu.start6.cn/%E8%BF%94%E5%9B%9E%E9%A1%B6%E9%83%A8.png"
@@ -35,13 +35,13 @@
   </view>
 </template>
 <script lang="ts">
-import { defineComponent, ref, nextTick } from 'vue';
-import Toast from '../../utils/toast';
-import log from '../../utils/log';
+import { defineComponent, ref, nextTick } from "vue";
+import Toast from "../../utils/toast";
+import log from "../../utils/log";
 
-type LoadMore = 'more' | 'loading' | 'noMore';
+type LoadMore = "more" | "loading" | "noMore";
 export default defineComponent({
-  name: 'ComContent',
+  name: "ComContent",
   props: {
     refresh: {
       type: Boolean,
@@ -61,13 +61,13 @@ export default defineComponent({
       default: 100,
     },
   },
-  emits: ['refresh', 'loadMore', 'update:page', 'update:size'],
+  emits: ["refresh", "loadMore", "update:page", "update:size", "onScroll"],
   setup(props, { emit }) {
     const scrollTop = ref(0);
     const scrollOldTop = ref(0);
     const triggered = ref<boolean | string>(false);
-    const more = ref<LoadMore>('more');
-    const isShowTop = ref('none');
+    const more = ref<LoadMore>("more");
+    const isShowTop = ref("none");
 
     // 滚动到顶部
     function upper(e: any) {
@@ -75,14 +75,14 @@ export default defineComponent({
     }
     // 滚动到底部
     function lower(e: any) {
-      if (more.value === 'more') {
-        more.value = 'loading';
-        emit('update:page', props.page + 1);
-        emit('loadMore', (val: any[]) => {
+      if (more.value === "more") {
+        more.value = "loading";
+        emit("update:page", props.page + 1);
+        emit("loadMore", (val: any[]) => {
           if (val.length < props.size) {
-            more.value = 'noMore';
+            more.value = "noMore";
           } else {
-            more.value = 'more';
+            more.value = "more";
           }
         });
       }
@@ -90,20 +90,21 @@ export default defineComponent({
     // 滚动
     function scroll(e: any) {
       // log.d(e, '滚动');
+      emit("onScroll", e);
       scrollOldTop.value = e.detail.scrollTop;
       if (e.detail.scrollTop > props.topThreshold) {
-        isShowTop.value = 'block';
+        isShowTop.value = "block";
       } else {
-        isShowTop.value = 'none';
+        isShowTop.value = "none";
       }
     }
 
     function refreshFun() {
-      emit('update:page', 1);
-      emit('refresh', () => {
+      emit("update:page", 1);
+      emit("refresh", () => {
         triggered.value = false;
-        more.value = 'more';
-        Toast.showMsg('刷新成功');
+        more.value = "more";
+        Toast.showMsg("刷新成功");
       });
     }
 
@@ -116,7 +117,7 @@ export default defineComponent({
     // 自定义下拉刷新被复位
     function onRestore() {
       // 需要重置
-      triggered.value = 'restore';
+      triggered.value = "restore";
     }
     // 自定义下拉刷新被中止
     function onAbort() {}

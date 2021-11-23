@@ -1,3 +1,44 @@
+# 环境
+- scss、typescript、vue3
+- 需要安装uni-ui
+  - 详细配置参考[地址](https://uniapp.dcloud.io/component/uniui/quickstart?id=npm%e5%ae%89%e8%a3%85)
+
+# 功能介绍
+- 上拉加载,下拉刷新
+  - 分页加载数据
+- 自定义导航栏
+
+# 存在问题
+
+- v-model:xxx 无法使用
+
+# 目录结构
+
+- components
+  - zk-comm-content
+    - zk-comm-content.vue 内容区域
+    - zk-comm-navbar.vue 自定义导航栏
+    - zk-comm-scroll.vue 上拉加载,下拉刷新
+- utils目录
+  - log.ts log日志输出
+  - toast.ts 提示
+# 其他
+
+- <font color="red">uniapp、vue3、typescript 基础项目</font>
+  - [github地址](https://github.com/EightDoor/uniapp-vue3-project)
+
+- 页面自定义了导航栏,需要配置开启自定义导航栏
+  - pages.json 配置 navigationStyle 为custom
+```json
+	"globalStyle": {
+    // ...
+    "navigationStyle": "custom"
+	}
+```
+# 
+
+# 使用示例
+```vue
 <template>
   <zk-comm-scroll title="加载更多" :isLeft="true" :refresh="true" @load-more="loadMore">
     <view
@@ -13,8 +54,8 @@
 <script lang="ts">
 import { defineComponent, ref, onMounted } from "vue";
 import { cloneDeep } from "lodash";
-import log from "@/uni_modules/zk-comm-scroll/utils/log";
-import { CallLoadMoreType } from "@/uni_modules/zk-comm-scroll/types";
+import log from "@/uni_modules/zk-comm/utils/log";
+import { CallLoadMoreType } from "@/uni_modules/zk-comm/types";
 
 export interface List {
   title: string;
@@ -75,3 +116,5 @@ export default defineComponent({
 </script>
 
 <style></style>
+
+```

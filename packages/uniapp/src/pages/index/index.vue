@@ -1,39 +1,42 @@
 <template>
-   <zk-comm-scroll title="首页"
-   >
+  <zk-comm-scroll title="首页">
     <view>
-      <text  
+      <view
         v-for="(item, index) in list"
-        :key="index" 
+        :key="index"
         @click="goLoadMore(item.path)"
         class="li"
       >
-        <span>{{item.title}}</span>
-        <span class="jump">点击跳转</span>
-      </text>
+        <text>{{ item.title }}</text>
+        <text class="jump">点击跳转</text>
+      </view>
     </view>
-    </zk-comm-scroll>
+  </zk-comm-scroll>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import log from '../../uni_modules/zk-comm/utils/log';
+import { defineComponent } from "vue";
+import log from "@/uni_modules/zk-comm-scroll/utils/log";
 
 export default defineComponent({
-  name: 'PagesIndex',
+  name: "PagesIndex",
   setup() {
     const list = [
       {
-        title: '加载更多',
-        path: '/pages/demo/load_more',
+        title: "加载更多",
+        path: "/pages/demo/load_more",
       },
       {
-         title: 'tabs',
-        path: '/pages/demo/tabs',
-      }
+        title: "tabs简单使用",
+        path: "/pages/demo/tabs",
+      },
+      {
+        title: "tabs复杂使用(上拉加载，下拉刷新)",
+        path: "/pages/demo/tabs_complex",
+      },
     ];
     function goLoadMore(url: string) {
-      log.d(url, 'url');
+      log.d(url, "url");
       uni.navigateTo({
         url,
       });
@@ -55,5 +58,6 @@ export default defineComponent({
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin-bottom: 15px;
 }
 </style>

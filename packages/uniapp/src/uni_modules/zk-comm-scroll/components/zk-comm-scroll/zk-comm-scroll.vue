@@ -1,29 +1,27 @@
 <template>
   <view>
     <nav-bar :title="title" :isLeft="isLeft">
-      <slot name="navBarRight"/>
+      <slot name="navBarRight" />
     </nav-bar>
     <custom-content
       :refresh="refresh"
-      @refresh="callRefres"
-      :page="page"
-      :size="size"
-      @update:page="updatePage"
-      @update:size="updateSize"
       @loadMore="loadMore"
+      @onScroll="onScroll"
+      @goTop="goTop"
     >
-      <slot/>
+      <slot />
     </custom-content>
   </view>
 </template>
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
-import NavBar from '../zk-comm-navbar/zk-comm-navbar.vue';
-import CustomContent from '../zk-comm-content/zk-comm-content.vue';
-import log from '../../utils/log';
+import { defineComponent, ref } from "vue";
+import NavBar from "../zk-comm-navbar/zk-comm-navbar.vue";
+import CustomContent from "../zk-comm-content/zk-comm-content.vue";
+import log from "../../utils/log";
+import { CallLoadMoreType } from "../../types";
 
 export default defineComponent({
-  name: 'ComIndex',
+  name: "ComIndex",
   components: {
     NavBar,
     CustomContent,
@@ -31,7 +29,7 @@ export default defineComponent({
   props: {
     title: {
       type: String,
-      default: '',
+      default: "",
     },
     isLeft: {
       type: Boolean,
@@ -50,39 +48,39 @@ export default defineComponent({
       default: 10,
     },
   },
-  emits: ['refresh', 'loadMore', 'update:page', 'update:size'],
+  emits: ["refresh", "loadMore", "update:page", "update:size", "onScroll", "goTop"],
   setup(props, { emit }) {
     const pageNum = ref(1);
     const pageSize = ref(10);
 
-    function callRefres(done: Function) {
-      emit('refresh', () => {
-        done();
-      });
-    }
-
-    function loadMore(done: Function) {
-      emit('loadMore', (val: any[]) => {
-        done(val);
-      });
+    function loadMore(data: CallLoadMoreType) {
+      emit("loadMore", data);
     }
 
     function updatePage(val: number) {
-      emit('update:page', val);
+      emit("update:page", val);
     }
 
     function updateSize(val: number) {
-      emit('update:size', val);
+      emit("update:size", val);
+    }
+
+    function onScroll(e: any) {
+      emit("onScroll", e);
+    }
+
+    function goTop() {
+      emit("goTop");
     }
 
     return {
-      callRefres,
-
       pageNum,
       pageSize,
       loadMore,
       updatePage,
       updateSize,
+      onScroll,
+      goTop,
     };
   },
 });
@@ -91,10 +89,10 @@ export default defineComponent({
 // var(--status-bar-height)
 $navBarHeight: 20px;
 $tabBarHeight: 50px;
-  .content_container {
-    padding: 15px;
-  }
-  .scroll_view {
-    height: calc(100vh - $navBarHeight - $tabBarHeight);
-  }
+.content_container {
+  padding: 15px;
+}
+.scroll_view {
+  height: calc(100vh - $navBarHeight - $tabBarHeight);
+}
 </style>

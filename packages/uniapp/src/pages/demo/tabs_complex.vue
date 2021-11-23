@@ -1,28 +1,52 @@
 <template>
-  <zk-comm-scroll title="加载更多" :isLeft="true" :refresh="true" @load-more="loadMore">
-    <view
-      v-for="(item, index) in list"
-      :key="index"
-      style="border: 1px solid red; height: 100px"
+  <view>
+    <zk-comm-tabs
+      :isLeft="true"
+      :refresh="true"
+      @load-more="loadMore"
+      :list="data"
+      @changeIndex="changeIndex"
     >
-      <text>{{ item.id }} {{ item.title }}</text>
-    </view>
-  </zk-comm-scroll>
+      <uni-list class="test" v-show="current === 0">
+        <uni-list-item
+          v-for="(item, index) in list"
+          :key="index"
+          style="border: 1px solid red; height: 100px"
+        >
+          <text>{{ item.id }} {{ item.title }}</text>
+        </uni-list-item>
+      </uni-list>
+      <text v-show="current === 1">123</text>
+    </zk-comm-tabs>
+  </view>
 </template>
-
 <script lang="ts">
-import { defineComponent, ref, onMounted } from "vue";
-import { cloneDeep } from "lodash";
-import log from "@/uni_modules/zk-comm-scroll/utils/log";
 import { CallLoadMoreType } from "@/uni_modules/zk-comm-scroll/types";
+import { cloneDeep } from "lodash";
+import { defineComponent, onMounted, ref, watch } from "vue";
+import log from "@/uni_modules/zk-comm-scroll/utils/log";
+import { List } from "./load_more.vue";
 
-export interface List {
-  title: string;
-  id: number;
-}
 export default defineComponent({
-  name: "PagesLoadMore",
+  name: "DemoTabs",
   setup() {
+    const data = ref([
+      "第一",
+      "第二",
+      "第一",
+      "第一",
+      "第一",
+      "第一项",
+      "第一项",
+      "第一项",
+      "第一项",
+    ]);
+    const current = ref(0);
+
+    function changeIndex(val: number) {
+      current.value = val;
+    }
+
     const list = ref<List[]>([]);
     const sourceList = ref<List[]>([]);
 
@@ -44,11 +68,12 @@ export default defineComponent({
     });
     // 加载更多
     function loadMore(data: CallLoadMoreType) {
-      log.d(data.page, "page");
+      // 模拟刷新
       if (data.page === 1) {
         refresh(data);
         return;
       }
+
       const result = cloneDeep(sourceList.value);
       const v = result.splice((data.page - 1) * data.size, 10);
       log.d(v, "分页的数据");
@@ -57,7 +82,6 @@ export default defineComponent({
         list.value = list.value.concat(v);
       }, 2000);
     }
-
     // 刷新
     function refresh(data: CallLoadMoreType) {
       setTimeout(() => {
@@ -66,12 +90,20 @@ export default defineComponent({
         list.value = result.splice(0, 10);
       }, 2000);
     }
+
     return {
+      current,
+      changeIndex,
+
       loadMore,
       list,
+      data,
     };
   },
 });
 </script>
-
-<style></style>
+<style scoped lang="scss">
+.test {
+  background: white;
+}
+</style>

@@ -7,28 +7,34 @@
     :isLeft="isLeft"
     @goTop="goTop"
   >
-    <scroll-view
-      :class="{ tabs_title_container: true, tab_title_ceiling: isCeiling }"
-      scroll-x="true"
-    >
-      <view :class="{ tabs_title_for: list.length <= 4 }">
-        <view
-          @click="change(index)"
-          v-for="(item, index) in list"
-          :key="index"
-          class="tabs_title"
-          :style="{
-            width: width,
-            borderBottom: `1px solid ${current === index ? activeColor : 'transpart'}`,
-          }"
-        >
-          <text :style="{ color: current === index ? activeColor : defaultTextColor }">
-            {{ item }}
-          </text>
-        </view>
-      </view>
-    </scroll-view>
     <view>
+      <tamplate #top>
+        <scroll-view
+          :class="{ tabs_title_container: true, tab_title_ceiling: isCeiling }"
+          scroll-x="true"
+        >
+          <view :class="{ tabs_title_for: list.length <= 4 }">
+            <view
+              @click="change(index)"
+              v-for="(item, index) in list"
+              :key="index"
+              class="tabs_title"
+              :style="{
+                width: width,
+                borderBottom: `1px solid ${
+                  current === index ? activeColor : 'transpart'
+                }`,
+              }"
+            >
+              <text
+                :style="{ color: current === index ? activeColor : defaultTextColor }"
+              >
+                {{ item }}
+              </text>
+            </view>
+          </view>
+        </scroll-view>
+      </tamplate>
       <slot />
     </view>
   </zk-comm-scroll>
@@ -140,7 +146,7 @@ $tabsPaddingBo: 10px;
 }
 .tab_title_ceiling {
   @extend .title_base;
-  position: fixed !important;
+  position: fixed;
   top: 65px;
   z-index: 10;
   background: white;

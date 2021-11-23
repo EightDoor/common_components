@@ -23,7 +23,7 @@
 <script lang="ts">
 import { CallLoadMoreType } from "@/uni_modules/zk-comm-scroll/types";
 import { cloneDeep } from "lodash";
-import { defineComponent, onMounted, ref, watch } from "vue";
+import { defineComponent, onMounted, ref } from "vue";
 import log from "@/uni_modules/zk-comm-scroll/utils/log";
 import { List } from "./load_more.vue";
 

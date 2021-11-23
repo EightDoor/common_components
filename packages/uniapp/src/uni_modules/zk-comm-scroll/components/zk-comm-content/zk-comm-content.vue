@@ -1,5 +1,5 @@
 <template>
-  <view>
+  <view class="content_contailer">
     <scroll-view
       class="scroll_view"
       :enable-back-to-top="true"
@@ -17,7 +17,6 @@
       @scrolltolower="lower"
       @scroll="scroll"
       :scroll-with-animation="true"
-      scroll-into-view="comm_content_id"
     >
       <view class="content_container">
         <slot />
@@ -172,5 +171,7 @@ $tabBarHeight: 50px;
   right: 15px;
   width: 20px;
   height: 20px;
+}
+.content_contailer {
 }
 </style>

@@ -3,6 +3,7 @@
     <nav-bar :title="title" :isLeft="isLeft">
       <slot name="navBarRight" />
     </nav-bar>
+    <slot name="top" />
     <custom-content
       :refresh="refresh"
       @loadMore="loadMore"

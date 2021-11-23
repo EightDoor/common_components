@@ -1,5 +1,5 @@
 <template>
-  <view>
+  <view class="navbar">
     <uni-nav-bar :fixed="true" :statusBar="true">
       <view class="navbar_title">
         <text>{{ title }}</text>
@@ -49,5 +49,7 @@ export default defineComponent({
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+.navbar {
 }
 </style>

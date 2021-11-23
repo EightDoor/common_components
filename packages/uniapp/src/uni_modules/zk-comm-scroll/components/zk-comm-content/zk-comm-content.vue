@@ -1,7 +1,7 @@
 <template>
   <view class="content_contailer">
     <scroll-view
-      class="scroll_view"
+      :class="{ scroll_view: !isTab, scroll_view_tab: isTab }"
       :enable-back-to-top="true"
       :show-scrollbar="true"
       :refresher-enabled="refresh"
@@ -57,6 +57,10 @@ export default defineComponent({
       type: Number,
       default: 100,
     },
+    isTab: {
+      type: Boolean,
+      default: false,
+    },
   },
   emits: ["refresh", "loadMore", "update:size", "onScroll", "goTop"],
   setup(props, { emit }) {
@@ -90,6 +94,7 @@ export default defineComponent({
         triggered.value = false;
         more.value = "more";
         Toast.showMsg("刷新成功");
+        pageNum.value = 1;
         return;
       }
       if (val.length < props.size) {
@@ -163,6 +168,9 @@ $tabBarHeight: 50px;
 }
 .scroll_view {
   height: calc(100vh - $navBarHeight - $tabBarHeight);
+}
+.scroll_view_tab {
+  height: calc(100vh - $navBarHeight - $tabBarHeight - 50px);
 }
 .content_image {
   display: none;

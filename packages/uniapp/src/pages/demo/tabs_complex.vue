@@ -1,6 +1,7 @@
 <template>
   <view>
-    <zk-comm-tabs
+    <zk-comm-scroll
+      isTab
       :isLeft="true"
       :refresh="true"
       @load-more="loadMore"
@@ -17,7 +18,7 @@
         </uni-list-item>
       </uni-list>
       <text v-show="current === 1">123</text>
-    </zk-comm-tabs>
+    </zk-comm-scroll>
   </view>
 </template>
 <script lang="ts">

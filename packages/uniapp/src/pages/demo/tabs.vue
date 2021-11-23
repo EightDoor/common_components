@@ -1,19 +1,25 @@
 <template>
   <view>
-    <zk-comm-tabs :isLeft="true" :list="list" title="tabs" @changeIndex="changeIndex">
+    <zk-comm-scroll
+      :isLeft="true"
+      isTab
+      :list="list"
+      title="tabs"
+      @changeIndex="changeIndex"
+    >
       <uni-list class="test" v-show="current === 0">
         <uni-list-item>
-          <text style="height: 200px; border: 1px solid red">12</text>
+          <text style="height: 200px; width: 100%; border: 1px solid red">12</text>
         </uni-list-item>
         <uni-list-item>
-          <text style="height: 200px; border: 1px solid red">12</text>
+          <text style="height: 200px; width: 100%; border: 1px solid red">12</text>
         </uni-list-item>
         <uni-list-item>
-          <text style="height: 200px; border: 1px solid red">12</text>
+          <text style="height: 200px; width: 100%; border: 1px solid red">12</text>
         </uni-list-item>
       </uni-list>
       <text v-show="current === 1">123</text>
-    </zk-comm-tabs>
+    </zk-comm-scroll>
   </view>
 </template>
 <script lang="ts">
@@ -49,5 +55,6 @@ export default defineComponent({
 <style scoped lang="scss">
 .test {
   background: white;
+  width: 100%;
 }
 </style>

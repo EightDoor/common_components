@@ -63,7 +63,7 @@
     "flyio": "^0.6.2",
     "lodash": "^4.17.21",
     "regenerator-runtime": "^0.12.1",
-    "vue": "^3.0.0"
+    "vue": "^3.2.22"
   },
   "devDependencies": {
     "@babel/plugin-syntax-typescript": "^7.2.0",
